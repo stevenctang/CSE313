@@ -1,0 +1,12 @@
+;Class:CSE 313 Machine Organization Lab
+;Term:Fall 2016
+;Name(s): Steven Tang and
+;Lab#1: ALU Operations
+;Description: No less than two paragraphs
+
+	.ORIG x3000 ;Starting point
+	LEA R0, HI ;Loads string hi into r0
+	PUTS ;Outputs r0 which contains HI
+	HALT ; Stops the program
+	HI .STRINGZ "Hello World" ;This is where we stated what we put in the HI string
+	.END
