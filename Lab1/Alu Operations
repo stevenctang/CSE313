@@ -1,0 +1,25 @@
+;Class:CSE 313 Machine Organization Lab
+;Term:Fall 2016
+;Name(s): Steven Tang and
+;Lab#1: ALU Operations
+;Description: In this lab, we did some basic functions such as adding, subtracting, and, not, and or. 
+;We first loaded a register to x3100, then copied the address to X/Y Registers. Then we did all of our operations after that. 
+;In order to do the OR functions, we needed to do NOT(NOT X AND NOT Y). The reason why we needed to do it this way is because
+;LC3 does not have the OR option. LC3 only has and, not, and add. At the end, we're going to get different outcomes
+;because we're trying out 3 pairs for x and y. The pairs that we're testing are (10,20), (-11,15),(11,-15), and (9,12).
+
+	
+	.ORIG x3000
+	LEA R7, xFF ; R7 = 3100
+	LDR R0, R7, x0 ; This is x 3100
+	LDR R1, R7, x1 ; Y 3101
+	ADD R2, R1, R0 ; SUM OF X + Y
+	AND R3, R0, R1 ; X AND Y
+	NOT R4, R3 ; X OR Y	
+	NOT R5, R0 ;Not x
+	NOT R6, R1 ; Not y
+	ADD R0, R1 , #3 ; X + 3
+	ADD R1, R0, #-3 ; Y-3 
+	STR R2, R1 , x1 ; Z?
+	HALT
+	.END
