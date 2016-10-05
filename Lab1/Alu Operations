@@ -1,63 +1,53 @@
 ;Class:CSE 313 Machine Organization Lab
 ;Term:Fall 2016
 ;Name(s): Steven Tang and Andrew Hedy
+;Group 1
 ;Lab#1: ALU Operations
-;Description: In this lab, we did some basic functions such as adding, subtracting, and, not, and or. 
-;We first loaded a register to x3100, then copied the address to X/Y Registers. Then we did all of our operations after that. 
+;Description: In this lab, we did some basic functions such as adding, subtracting, and, not, and or.
+;Before doing anything with the registers, we cleared them out by adding 0 to them: AND R0, R0, #0. 
+;We first loaded a register to x3100, then copied the address to the X/Y Registers. Then we did all of our operations after that. 
 ;In order to do the OR functions, we needed to do NOT(NOT X AND NOT Y). The reason why we needed to do it this way is because
 ;LC3 does not have the OR option. LC3 only has and, not, and add. At the end, we're going to get different outcomes
 ;because we're trying out 3 pairs for x and y. The pairs that we're testing are (10,20), (-11,15),(11,-15), and (9,12).
-
+;These numbes will be loaded in the variables numberOne and numberTwo.
 	
 	.ORIG x3000
-	LEA R7, xFF ; R7 = 3100
-	LDR R0, R7, x0 ; This is x 3100
-	LDR R1, R7, x1 ; Y 3101
+	LEA R7, xFF 		; R7 = 3100
+	LDR R0, R7, x0 		; This is x3100
+	LDR R1, R7, x1 		; Y is x3101
 	
-	ADD R0, R0, #0
-	LD R0, numberOne ;Puts numberOne into R0 (X)
-	ADD R1, R1, #0
-	LD R1, numberTwo ;Puts numberTwo into R1 (Y)
 	
 	;ADD
-	ADD R2, R2, #0
-	ADD R2, R0, R1 ; SUM OF X + Y
-	STR R2, R7, x2	 ; Store R2 into x3102
+	ADD R2, R0, R1 		;SUM OF X + Y
+	STR R2, R7, x2	 	;Store R2 into x3102
  
 
 	; AND
-	ADD R3, R3, #0
-	AND R3, R0, R1 ; X AND Y
-	STR R3, R7, x3 ; Store R3 into x3103
+	AND R3, R0, R1 		;X AND Y
+	STR R3, R7, x3 		;Store R3 into x3103
 	
 	;NOT
-	ADD R5, R5, #0
-	NOT R5, R0 ;Not x
-	STR R5, R7, x5 ; Store R5 into x3105
-	ADD R6, R6, #0
-	NOT R6, R1 ; Not y
-	STR R6, R7, x6 ; Store R6 into x3106	
+	NOT R5, R0 		;Not x
+	STR R5, R7, x5 		;Store R5 into x3105
+	NOT R6, R1 		;Not y
+	STR R6, R7, x6 		;Store R6 into x3106	
 	
 	;OR
-	ADD R4, R4, #0
-	AND R4, R5, R6 ; Not x and Not y
-	NOT R4, R3 ; X OR Y -> NOT(NOT X AND NOT Y)	
-	STR R4, R7, x4 ; Store R3 into x3104
+	AND R4, R5, R6 		;Not x and Not y
+	NOT R4, R4 		;X OR Y -> NOT(NOT X AND NOT Y)	
+	STR R4, R7, x4 		;Store R4 into x3104
 	
 	;ADDING CONSTANTS
-	ADD R0, R0, #0
-	ADD R0, R1, #3 ; X + 3
-	STR R0, R7, x7 ; Store R0 into x3107
-	ADD R1, R1, #0
-	ADD R1, R0, #-3 ; Y-3 
-	STR R1, R7, x8 ; Store R1 into x3108
+	ADD R0, R0, #3 		;X + 3
+	STR R0, R7, x7 		;Store R0 into x3107
+	ADD R1, R1, #-3 	;Y-3 
+	STR R1, R7, x8 		;Store R1 into x3108
 	
 	;Z
-	ADD R0, R0,#0;
-	STR R0, R7, x9 ;Stored 0 into x3109
+	AND R7,R0,x9;
+	STR R0, R7, x9 		;Stored 0 into x3109
 
 	HALT
-	numberOne .FILL #10 ;Storing whatever number we want into variable "numberOne"
-	numberTwo .FILL #20 ;Storing whatever number we want into variable "numberTwo"
+	
 
 	.END
