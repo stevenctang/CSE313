@@ -1,0 +1,28 @@
+;Class:CSE 313 Machine Organization Lab
+;Term:Fall 2016
+;Name(s): Steven Tang and Andrew Hedy
+;Group 9
+;Lab#2: Arithmetic Functions
+;Description: In this lab...
+	
+	.ORIG x3020
+	;LEA R7, address		; R7 = 3120
+	LEA R7, xFF
+	LDR R0, R7, x0 		; This is x3120
+	LDR R1, R7, x1	 	; Y is x3121
+	
+	;SUBTRACTION
+	NOT R2, R1		;1s Compliment of R1 (Y)
+	ADD R2, R2, #1		;2s Compliment of R2 which is (Y)
+	ADD R3, R0, R2		;Performance subtraction
+	STR R3, R7, x2
+	
+	;ABSOLUTE VALUE OF X
+	
+	;ABSOLUTE VALUE OF Y
+
+	;Z		
+
+	HALT
+	address .FILL x3199
+	.END
