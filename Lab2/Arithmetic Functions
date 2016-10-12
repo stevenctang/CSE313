@@ -24,35 +24,40 @@
 	BRzp ZPX
 	NOT R4, R4
 	ADD R4, R4, #1
-	ZPX 
-	STI R4, abs_x	
+ZPX 	STI R4, abs_x	
 
 	;ABSOLUTE VALUE OF Y
 	ADD R5, R1, #0		;R5 now has Y
 	BRzp ZPY
 	NOT R5,R5
 	ADD R5, R5, #1
-	ZPY
-	STI R5, abs_y
+ZPY	STI R5, abs_y
+	
 
-	;Z
-	ADD R6, R4, R5
+	;Z CODE
+	NOT R5, R5
+	ADD R5, R5, #1
+	ADD R6, R4, R5		; X + (-Y)
 	BRn yBig
 	BRz Equal
 	BRp xBig
-Equal	ADD R7, R7, #0
-	STI R7, larger
 
-xBig	AND R7, R7, #0
+Equal	
+	ADD R7, R7, #0		;0 Will be in x3125 if X = Y
+	STI R7, larger
+	HALT
+	
+xBig				;1 Will be in x3125 if X > Y
 	ADD R7, R7, #1
 	STI R7, larger
-
-yBig	AND R7, R7, #0
+	HALT
+	
+yBig				;2 Will be in x3125 if Y > X
 	ADD R7, R7, #2
 	STI R7, larger
-
-
+	
 	HALT
+
 	X .FILL x3120		;Takes the value stored in x3120 and stores it into X
 	Y .FILL x3121		;Takes the value stored in x3121 and stores it into Y
 	subtraction .FILL x3122 ;This is where we're going to store our difference of X and Y

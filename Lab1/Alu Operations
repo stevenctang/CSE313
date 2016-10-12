@@ -1,7 +1,7 @@
 ;Class:CSE 313 Machine Organization Lab
 ;Term:Fall 2016
 ;Name(s): Steven Tang and Andrew Hedy
-;Group 1
+;Group 9
 ;Lab#1: ALU Operations
 ;Description: In this lab, we did some basic functions such as adding, subtracting, and, not, and or.
 ;Before doing anything with the registers, we cleared them out by adding 0 to them: AND R0, R0, #0. 
