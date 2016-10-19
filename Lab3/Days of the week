@@ -5,14 +5,14 @@
 ;Lab#2: Days of the week
 ;Description: asdsadsad
 
-    xORIG x3100
+    .ORIG x3100
     LEA R0, GREET  
-    PUTS
-    GETC
-    ADD R1, R0, #0
-    ADD R1, R1, #-16
-    ADD R1, R1, #-16
-    ADD R1, R1, #-16    ;Subtracted -16 3 times because the most we can add is 5 bits.
+    PUTS		;Outputs our greeting message to the command prompt
+    GETC		;Gets the users input SINGLE CHARACATER
+    ADD R3, R0, #0
+    ADD R3, R3, #-16
+    ADD R3, R3, #-16
+    ADD R3, R3, #-16    ;Subtracted -16 3 times because the most we can add is 5 bits.
     LEA R0, DAYS        ;Stores address of whatever day to R0
     ADD R3, R3, #0
 LOOP
@@ -25,11 +25,11 @@ DISPLAY PUTS
 
     GREET .STRINGZ "Please enter number: "
     DAYS  
-        .STRINGZ "Sunday"
-        .STRINGZ "Monday"
-        .STRINGZ "Tuesday"
+        .STRINGZ "Sunday   "
+        .STRINGZ "Monday   "
+        .STRINGZ "Tuesday  "
         .STRINGZ "Wednesday"
-        .STRINGZ "Thursday"
-        .STRINGZ "Friday"
-        .STRINGZ "Saturday"
+        .STRINGZ "Thursday "
+        .STRINGZ "Friday   "
+        .STRINGZ "Saturday "
     .END
