@@ -8,23 +8,23 @@
 ;To subtract, we first took the 1s compliment of Y, added 1 to that, and then added the outcome to X. So if it was 5 - 2, it's now 5 + (-2).
 ;Next we're going to take the |X| and store it in x3123 and the |Y| and store that into x3124. After we're going to compare
 ;which is bigger. If X is bigger we place a 1 in x3125, if Y is bigger we place a 2, and if they're equal we place a 0.
-	
+
 	.ORIG x3000
 	LDI R0, X;		;R1 Now has the value of X
 	LDI R1, Y;		;R1 Now has the value of Y
-	
+
 	;SUBTRACTION
 	NOT R2, R1		;1s Compliment of R1 (Y)
 	ADD R2, R2, #1		;2s Compliment of R2 which is (Y)
 	ADD R3, R0, R2		;Performance subtraction
 	STI R3, subtraction 	;Stores our different into address x3122
-	
+
 	;ABSOLUTE VALUE OF X
 	ADD R4, R0, #0		;R4 Now has X
 	BRzp ZPX
 	NOT R4, R4
 	ADD R4, R4, #1
-ZPX 	STI R4, abs_x	
+ZPX 	STI R4, abs_x
 
 	;ABSOLUTE VALUE OF Y
 	ADD R5, R1, #0		;R5 now has Y
@@ -32,36 +32,37 @@ ZPX 	STI R4, abs_x
 	NOT R5,R5
 	ADD R5, R5, #1
 ZPY	STI R5, abs_y
-	
+
 
 	;Z CODE
-	NOT R5, R5			;Ones Compliment of |Y|
+	NOT R5, R5		;Ones Compliment of |Y|
 	ADD R5, R5, #1		;Twos compliment of |Y|
 	ADD R6, R4, R5		; X + (-Y)
 	BRn yBig
 	BRz Equal
 	BRp xBig
 
-Equal	
-	ADD R7, R7, #0		
-	STI R7, larger	;0 Will be in x3125 if X = Y
-	HALT
-	
-xBig				
-	ADD R7, R7, #1
-	STI R7, larger	;1 Will be in x3125 if X > Y
-	HALT
-	
-yBig				
-	ADD R7, R7, #2
-	STI R7, larger	;2 Will be in x3125 if Y > X
-	
+Equal
+	ADD R7, R7, #0
+	STI R7, larger		;0 Will be in x3125 if X = Y
 	HALT
 
-	X .FILL x3120			;Takes the value stored in x3120 and stores it into X
-	Y .FILL x3121			;Takes the value stored in x3121 and stores it into Y
+xBig
+	ADD R7, R7, #1
+	STI R7, larger		;1 Will be in x3125 if X > Y
+	HALT
+
+yBig
+	ADD R7, R7, #2
+	STI R7, larger		;2 Will be in x3125 if Y > X
+
+	HALT
+
+	X .FILL x3120		;Takes the value stored in x3120 and stores it into X
+	Y .FILL x3121		;Takes the value stored in x3121 and stores it into Y
 	subtraction .FILL x3122 ;This is where we're going to store our difference of X and Y
-	abs_x .FILL x3123		;This is where we're going to store our |X| 
-	abs_y .FILL x3124		;This is where we're going to store our |Y| 
-	larger .FILL x3125 		;Store which is larger value is larger or if they're equal
+	abs_x .FILL x3123	;This is where we're going to store our |X|
+	abs_y .FILL x3124	;This is where we're going to store our |Y|
+	larger .FILL x3125 	;Store which is larger value is larger or if they're equal
+
 	.END
