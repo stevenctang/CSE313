@@ -1,0 +1,29 @@
+;Class:CSE 313 Machine Organization Lab
+;Term: Fall 2016
+;Name(s): Andrew Hedy, Steven
+;Lab#5: Subroutines: Multiplication, Divison, Modulus
+;Description:
+
+	.ORIG x3000
+	
+	JSR MULT 	;Jump to multiplication subroutine
+	JSR DIV		;Jump to division subroutine	
+
+	HALT
+X	.FILL x3100
+Y	.FILL x3101
+PRODUCT .FILL x3102
+QUOT	.FILL x3103
+MOD	.FILL x3104
+save1	.FILL x0
+save2	.FILL x0
+
+MULT
+	ST R5, save1
+	ST R6, save2	
+	RET		;Exits from multipliation subroutine and returns
+DIV
+	
+	RET 		;Exits from division subroutine and returns
+
+	.END

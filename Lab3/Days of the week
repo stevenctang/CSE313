@@ -2,8 +2,11 @@
 ;Term:Fall 2016
 ;Name(s): Steven Tang and Andrew Hedy
 ;Group 9
-;Lab#2: Days of the week
-;Description: asdsadsad
+;Lab#3: Days of the week
+;Description: In this lab, we're going to read a users input and output a response depending on what the user entered.
+;The user will input a number from 0-6 that will correspond to different days of the week. If the user enters 0, the 
+;program will output the string "Sunday". If the user inputs 1, the program will output the string "Monday" and so on.
+;If the user were to input anything other than 0-6, the program will print nothing.
 
     .ORIG x3100
     LEA R0, GREET  
