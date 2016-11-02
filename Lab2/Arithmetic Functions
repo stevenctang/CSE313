@@ -2,7 +2,7 @@
 ;Term:Fall 2016
 ;Name(s): Steven Tang and Andrew Hedy
 ;Group 9
-;Lab#2: Arithmetic Functions
+;Lab #2: Arithmetic Functions
 ;Description: In this lab we're taking the values of X(x3120) and Y(x3121) into registers 1 and 0.
 ;After extracting the values from the memory locations, we're going to subtract them and store it in memory location x3122.
 ;To subtract, we first took the 1s compliment of Y, added 1 to that, and then added the outcome to X. So if it was 5 - 2, it's now 5 + (-2).
@@ -10,6 +10,17 @@
 ;which is bigger. If X is bigger we place a 1 in x3125, if Y is bigger we place a 2, and if they're equal we place a 0.
 
 	.ORIG x3000
+<<<<<<< HEAD
+	LDI R0, X;				;R1 Now has the value of X
+	LDI R1, Y;				;R1 Now has the value of Y
+	
+	;SUBTRACTION
+	NOT R2, R1				;1s Compliment of R1 (Y)
+	ADD R2, R2, #1			;2s Compliment of R2 which is (Y)
+	ADD R3, R0, R2			;Performance subtraction
+	STI R3, subtraction 	;Stores in [x3122]
+	
+=======
 	LDI R0, X;		;R1 Now has the value of X
 	LDI R1, Y;		;R1 Now has the value of Y
 
@@ -19,20 +30,30 @@
 	ADD R3, R0, R2		;Performance subtraction
 	STI R3, subtraction 	;Stores our different into address x3122
 
+>>>>>>> cc9199fdf1f560715bbfd438cf78af07c7cc412c
 	;ABSOLUTE VALUE OF X
 	ADD R4, R0, #0		;R4 Now has X
 	BRzp ZPX
 	NOT R4, R4
 	ADD R4, R4, #1
+<<<<<<< HEAD
+ZPX STI R4, abs_x		;Stores in [x3123]
+=======
 ZPX 	STI R4, abs_x
+>>>>>>> cc9199fdf1f560715bbfd438cf78af07c7cc412c
 
 	;ABSOLUTE VALUE OF Y
 	ADD R5, R1, #0		;R5 now has Y
 	BRzp ZPY
 	NOT R5,R5
 	ADD R5, R5, #1
+<<<<<<< HEAD
+ZPY	STI R5, abs_y		;Stores in [x3124]
+	
+=======
 ZPY	STI R5, abs_y
 
+>>>>>>> cc9199fdf1f560715bbfd438cf78af07c7cc412c
 
 	;Z CODE
 	NOT R5, R5		;Ones Compliment of |Y|
@@ -42,20 +63,35 @@ ZPY	STI R5, abs_y
 	BRz Equal
 	BRp xBig
 
+<<<<<<< HEAD
+Equal	
+	ADD R7, R7, #0		
+	STI R7, larger	;0 Will be stored in [x3125] if X = Y
+=======
 Equal
 	ADD R7, R7, #0
 	STI R7, larger		;0 Will be in x3125 if X = Y
+>>>>>>> cc9199fdf1f560715bbfd438cf78af07c7cc412c
 	HALT
 
 xBig
 	ADD R7, R7, #1
+<<<<<<< HEAD
+	STI R7, larger	;1 Will be stored in [x3125] if X > Y
+=======
 	STI R7, larger		;1 Will be in x3125 if X > Y
+>>>>>>> cc9199fdf1f560715bbfd438cf78af07c7cc412c
 	HALT
 
 yBig
 	ADD R7, R7, #2
+<<<<<<< HEAD
+	STI R7, larger	;2 Will be stored in [x3125] if Y > X
+	
+=======
 	STI R7, larger		;2 Will be in x3125 if Y > X
 
+>>>>>>> cc9199fdf1f560715bbfd438cf78af07c7cc412c
 	HALT
 
 	X .FILL x3120		;Takes the value stored in x3120 and stores it into X
