@@ -5,11 +5,18 @@
 ;Description:
 
 	.ORIG x3000
+	LDI R3, X
+	LDI R4, Y
 	
 	JSR MULT 	;Jump to multiplication subroutine
+	STI R0, PRODUCT
+	
 	JSR DIV		;Jump to division subroutine	
-
+	STI R1, QUOT
+	STI R2, MOD
+	
 	HALT
+
 X	.FILL x3100
 Y	.FILL x3101
 PRODUCT .FILL x3102
@@ -18,12 +25,18 @@ MOD	.FILL x3104
 save1	.FILL x0
 save2	.FILL x0
 
-MULT
+MULT			;There is where the code for MULTIPLICATION Subroutines starts
+	
 	ST R5, save1
 	ST R6, save2	
+	BR nzp
+	ADD R0, R0, 0;
 	RET		;Exits from multipliation subroutine and returns
-DIV
-	
+
+DIV			;There is where the code for MULTIPLICATION Subroutines starts
+
+	ADD R1, R1, 0
+	ADD R2, R2, 0	
 	RET 		;Exits from division subroutine and returns
 
 	.END
