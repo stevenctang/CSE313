@@ -1,11 +1,27 @@
 //Symbol Name		Page Address
 //----------------	------------
-//	LOOP                    300D
-//	MOD                     3009
-//	MULT                    300C
-//	PRODUCT                 3007
-//	QUOT                    3008
-//	X                       3005
-//	Y                       3006
-//	save1                   300A
-//	save2                   300B
+//	AHEAD                   3049
+//	CHECK                   300F
+//	CONT                    3038
+//	DIV                     302D
+//	DONE                    3025
+//	DONE1                   3028
+//	EXIT                    304A
+//	LOOP                    301D
+//	LOOP1                   303D
+//	LOOP2                   3046
+//	MOD                     3053
+//	MULT                    3008
+//	NEG                     3012
+//	NEG1                    3017
+//	NEGX                    304D
+//	NEGY                    303A
+//	OK                      301B
+//	QUOT                    3052
+//	SAVEX                   3054
+//	SAVEY                   3055
+//	SIGN                    3023
+//	STOP                    3042
+//	X                       304F
+//	XY                      3051
+//	Y                       3050
