@@ -1,0 +1,11 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	LOOP                    300D
+//	MOD                     3009
+//	MULT                    300C
+//	PRODUCT                 3007
+//	QUOT                    3008
+//	X                       3005
+//	Y                       3006
+//	save1                   300A
+//	save2                   300B
