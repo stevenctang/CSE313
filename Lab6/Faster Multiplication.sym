@@ -1,0 +1,8 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	EXIT                    300C
+//	LOOP                    3006
+//	MULT1                   3005
+//	X                       300D
+//	XY                      300F
+//	Y                       300E

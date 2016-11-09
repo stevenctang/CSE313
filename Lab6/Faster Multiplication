@@ -1,0 +1,30 @@
+;Class:CSE 313 Machine Organization Lab
+;Quarter: Fall 2016
+;Name(s): Andrew Hedy, Steven Tang
+;Lab 6 Faster Multiplication
+;Description: 
+	
+	.ORIG x3000
+	LDI R0, X
+	LDI R1, Y
+	JSR MULT1
+	STI R2, XY
+
+	HALT
+
+MULT1	AND R2, R2, 0	;CLEAR FOR XY
+	
+LOOP 	
+	ADD R3, R3, R1  ;ADDING R0(X) TO R2(TEMP REG)
+	ADD R2, R2, V	; P = P + Y
+	ADD R1, R1, R1
+	ADD R3,R3,#-1  	;DECREMENT R3(Y) 
+	BRp LOOP
+	BRnz EXIT	;Once Y <= 0 EXIT LOOP
+EXIT	RET		;RETURN FROM SUBROUTINE
+  				
+X	.FILL x3100
+Y	.FILL x3101
+XY	.FILL x3102
+
+	.END
