@@ -1,8 +1,14 @@
 //Symbol Name		Page Address
 //----------------	------------
-//	EXIT                    300C
-//	LOOP                    3006
-//	MULT1                   3005
-//	X                       300D
-//	XY                      300F
-//	Y                       300E
+//	ISZERO                  3019
+//	LAST                    3016
+//	MULT1                   300C
+//	POS                     3029
+//	SIGNIG                  3004
+//	START                   3007
+//	X                       3030
+//	XNEG                    3020
+//	XY                      3032
+//	Y                       3031
+//	YNEG                    3025
+//	nProd                   302B

@@ -1,30 +1,73 @@
 ;Class:CSE 313 Machine Organization Lab
-;Quarter: Fall 2016
-;Name(s): Andrew Hedy, Steven Tang
-;Lab 6 Faster Multiplication
-;Description: 
-	
+;Term:Fall 2016
+;Name(s): Steven Tang and Andrew Hedy
+;Group 9
+;Lab#6: Faster Multiplication
+;Description: In this lab, we're going to multiply 2 integers together to get the product. Instead of adding it over and over again,
+;we're going to shift our binary number and add from there. This process is faster than having it loop over and over again.
+
 	.ORIG x3000
 	LDI R0, X
 	LDI R1, Y
-	JSR MULT1
-	STI R2, XY
+	
+	BRn XNEG
+	BR SIGNIG
 
+SIGNIG 	ADD R1, R1, #0
+	BRn YNEG
+	BR START
+
+START	AND R2, R2, #0	;R2 will be our product, so we clear it
+	ADD R3, R2, #1	
+	AND R4, R4, #0	
+	ADD R5, R2, #-15	
+	BR MULT1
+
+MULT1	AND R7, R0, R3	;This is where the multiplication happens
+	BRz ISZERO
+	ADD R2, R2, R1	
+	ADD R1, R1, R1	;This is where we shift over
+	ADD R3, R3, R3
+	ADD R4, R4, #1	;increment
+	AND R7, R7, #0	;clears r7
+	ADD R7, R4, R5	
+	BRn MULT1
+	BR FINAL
+
+FINAL	ADD R6, R6, #-1
+	BRnp POS
+	BRz nProd
+
+ISZERO	ADD R3, R3, R3
+	ADD R1, R1, R1
+	ADD R4, R4, #1
+	AND R7, R7, #0
+	ADD R7, R4, R5
+	BRn MULT1
+	BR FINAL
+
+XNEG	AND R6, R6, #0	;Case if X is negative
+	ADD R6, R6, #1
+	NOT R0, R0
+	ADD R0, R0, #1
+	BR SIGNIG
+
+YNEG	ADD R6, R6, #1	;Case if Y is negative
+	NOT R1, R1
+	ADD R1, R1, #1
+	BR START
+
+POS	STI R2, XY
 	HALT
 
-MULT1	AND R2, R2, 0	;CLEAR FOR XY
-	
-LOOP 	
-	ADD R3, R3, R1  ;ADDING R0(X) TO R2(TEMP REG)
-	ADD R2, R2, V	; P = P + Y
-	ADD R1, R1, R1
-	ADD R3,R3,#-1  	;DECREMENT R3(Y) 
-	BRp LOOP
-	BRnz EXIT	;Once Y <= 0 EXIT LOOP
-EXIT	RET		;RETURN FROM SUBROUTINE
-  				
-X	.FILL x3100
-Y	.FILL x3101
-XY	.FILL x3102
+nProd	NOT R2, R2
+	ADD R2, R2, #1
+	STI R2, XY	;Store our final product
+	RET
+	HALT
 
+X	.FILL x3100	;We get our X from memory location x3100 
+Y	.FILL x3101	;We get our Y from memory location x3101
+XY	.FILL x3102	;We will store our product in x3102
+	
 	.END
