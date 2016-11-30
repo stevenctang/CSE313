@@ -7,8 +7,8 @@
 ;we're going to shift our binary number and add from there. This process is faster than having it loop over and over again.
 
 	.ORIG x3000
-	LDI R0, X
-	LDI R1, Y
+	LDI R0, X	;Loads value of x into register R0
+	LDI R1, Y	;Loads value of y into register R1
 	
 	BRn XNEG
 	BR SIGNIG
