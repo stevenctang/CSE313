@@ -1,0 +1,21 @@
+.orig x3000     ; starting position
+    and r0, r0, #0  ; result
+    ld r1, m1       ; multiplicand
+    ld r2, m2       ; multiplier
+    add r3, r0, #1  ; mask for testing bit
+    add r4, r0, #-1 ; mask for end condition (all 1 bits)
+l1  and r2, r2, r4  ; any bits remaining?
+    brz l4          ; no, done
+    and r5, r2, r3  ; test bit
+    brz l2          ; if bit is zero, skip addition
+    add r0, r0, r1  ; add multiplicand to result
+	ST R0, XY
+l2  add r1, r1, r1  ; shift multiplicand bits left
+    add r3, r3, r3  ; shift test mask left
+    add r4, r4, r4  ; shift end mask left
+    brnzp l1        ; redo
+l4  trap x25        ; end
+m1  .fill #5
+m2  .fill #3
+XY  .fill x3100
+    .end

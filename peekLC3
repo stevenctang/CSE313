@@ -1,0 +1,14 @@
+LC3 Peek Algorithm
+
+	Peek 	AND R5, R5, #0
+		LEA R0, Base
+		NOT R0, R0
+		ADD R0, R0, #1 
+		ADD R0, R0, R6
+		BRz Underflow
+		LDR R0, R6, #0;
+		RET
+	Underflow
+		ADD R5, R5, #1
+		RET
+	BASE	.Fill x0000
