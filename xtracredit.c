@@ -1,23 +1,34 @@
+/* 	
+*	Class: CSE 313 Machine Organization Lab
+*	Term: Fall 2016
+*	Name(s): Steven Tang and Andrew Hedy
+*	Group 9
+*	Extra Credit Lab 9
+*	Description: In this lab, we're implementing the LCRNG algorithm in C to
+*	generate random numbers. We're going to generate 20 random numbers and 
+*	output them to the screen.
+*	a = 7, m = 32767, seed = 100
+*/
 #include <stdio.h>
-// a = 7, m = 32767, seed = 100
+
 int * random (int seed, int size){
-	int a,x,m,q,r, i;
-	a = size;
+	int a,x,m,q,r,i;
+	a = 7;
 	m = 32767;
 	x = seed;
 	q = m / a;
 	r = m % a;
-	for (i = 0; i <= 20; i++){
+	for (i = 0; i <= size; i++){
 		x = a * (x%q) - r * (x/q);
 		if (x < 0)
 			x = x + m;
 		printf("%x\n",x);
 	}
-	
+	return 0;
 }
 
 int main(){
-	int size = 7;
-	int seed = 10;
+	int size = 20;
+	int seed = 100;
 	random(seed,size);
 }
