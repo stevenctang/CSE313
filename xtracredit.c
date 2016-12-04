@@ -1,17 +1,23 @@
 #include <stdio.h>
-
+// a = 7, m = 32767, seed = 100
 int * random (int seed, int size){
-	//return 5;
+	int a,x,m,q,r, i;
+	a = size;
+	m = 32767;
+	x = seed;
+	q = m / a;
+	r = m % a;
+	for (i = 0; i <= 20; i++){
+		x = a * (x%q) - r * (x/q);
+		if (x < 0)
+			x = x + m;
+		printf("%x\n",x);
+	}
+	
 }
-int add (int x, int y){
-	int sum;
-	sum = x + y;
-	return sum;
-}
+
 int main(){
-	int array[20];
-	int a;
-	int sum;
-	sum = add(2,2);
-	printf("%x\n",sum);
+	int size = 7;
+	int seed = 10;
+	random(seed,size);
 }
