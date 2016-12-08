@@ -18,7 +18,7 @@ int * random (int seed, int size){
 	x = seed;
 	q = m / a;
 	r = m % a;
-	for (i = 0; i <= size; i++){
+	for (i = 0; i < size; i++){
 		x = a * (x%q) - r * (x/q);
 		if (x < 0)
 			x = x + m;
