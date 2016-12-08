@@ -22,13 +22,19 @@ int * random (int seed, int size){
 		x = a * (x%q) - r * (x/q);
 		if (x < 0)
 			x = x + m;
-		printf("%x\n",x);
+		printf("%d\n",x);
 	}
 	return 0;
 }
 
 int main(){
-	int size = 20;
-	int seed = 100;
+	int size,seed;
+	printf("\nPlease enter the size:\n");
+	scanf("%i",&size);
+	printf("Please enter the seed:\n");
+	scanf("%i",&seed);
+	printf("\nYour ");
+	printf("%i",size);
+	printf(" random numbers are:\n");
 	random(seed,size);
 }
